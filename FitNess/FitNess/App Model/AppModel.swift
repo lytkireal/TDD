@@ -31,5 +31,11 @@ public class AppModel {
 
   static let instance = AppModel()
 
+  var appState = AppState.notStarted
+  
   public init() {}
+  
+  func start() {
+    appState = .inProgress
+  }
 }

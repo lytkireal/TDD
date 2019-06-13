@@ -61,12 +61,20 @@ class StepCountController: UIViewController {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    updateButton()
   }
 
   @IBAction func startStopPause(_ sender: Any?) {
-    
+    AppModel.instance.appState = .inProgress
+    updateButton()
+  }
+  
+  fileprivate func updateButton() {
+    let title = AppModel.instance.appState.nextStateButtonLabel
+    startButton.setTitle(title, for: .normal)
   }
 }
