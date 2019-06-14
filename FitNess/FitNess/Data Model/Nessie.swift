@@ -26,59 +26,9 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
-@testable import FitNess
+import Foundation
 
-class AppModelTests: XCTestCase {
-
-  var sut: AppModel!
-
-  override func setUp() {
-    super.setUp()
-    sut = AppModel()
-  }
-
-  override func tearDown() {
-    sut = nil
-    super.tearDown()
-  }
-
-  // MARK: - Given
-
-  // MARK: - Lifecycle
-
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
-  }
-
-  // MARK: - Start
-
-  func testAppModelWithNoGoal_whenStarted_throwsError() {
-    XCTAssertThrowsError(try sut.start())
-  }
-  
-  func testAppModel_withGoalSet_doesNotThrow() {
-    // given
-    givenGoalSet()
-    
-    // then
-    XCTAssertNoThrow(try sut.start())
-  }
-  
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenGoalSet()
-    
-    // when started
-    try? sut.start()
-
-    // then it is in inProgress
-    let newState = sut.appState
-    XCTAssertEqual(newState, AppState.inProgress)
-  }
-  
-  func givenGoalSet() {
-    sut.dataModel.goal = 1000
-  }
+/** The Fitness Monster */
+class Nessie {
+  var distance: Double = 0
 }

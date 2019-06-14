@@ -25,17 +25,21 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+
 import Foundation
 
-public class AppModel {
+class AppModel {
 
   static let instance = AppModel()
 
-  var appState = AppState.notStarted
+  private(set) var appState: AppState = .notStarted
   
-  public init() {}
-  
-  func start() {
+  let dataModel = DataModel()
+
+  func start() throws {
+    guard dataModel.goal != nil else {
+      throw AppError.goalNotSet
+    }
     appState = .inProgress
   }
 }
