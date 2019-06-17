@@ -19,6 +19,8 @@
 		0A9EB50B21C072F00062B66E /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EB50A21C072F00062B66E /* AppModel.swift */; };
 		0AA5E735219B9B4600B7A0D0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5E734219B9B4600B7A0D0 /* AppState.swift */; };
 		1B12C4D522B3926500CA0284 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4D422B3926500CA0284 /* DataModelTests.swift */; };
+		1B12C4DC22B7CBD300CA0284 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4DB22B7CBD300CA0284 /* ViewControllers.swift */; };
+		1B12C4DF22B7D2DC00CA0284 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
@@ -49,6 +51,8 @@
 		0A9EB50A21C072F00062B66E /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		0AA5E734219B9B4600B7A0D0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		1B12C4D422B3926500CA0284 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		1B12C4DB22B7CBD300CA0284 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,8 +81,10 @@
 		0A21C7D621C6BF8B00169D8B /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A21C7D921C6BF8B00169D8B /* Info.plist */,
 				0A21C7E321C70C5800169D8B /* Cases */,
+				1B12C4DD22B7D2B800CA0284 /* Test Extensions */,
+				1B12C4DA22B7CBAE00CA0284 /* Test Classes */,
+				0A21C7D921C6BF8B00169D8B /* Info.plist */,
 			);
 			path = FitNessTests;
 			sourceTree = "<group>";
@@ -142,6 +148,7 @@
 				0AA5E734219B9B4600B7A0D0 /* AppState.swift */,
 				0A2EC8DE21D3E7020091A995 /* AppError.swift */,
 				0A9EB50A21C072F00062B66E /* AppModel.swift */,
+				0A80ED3C21CB2A1D000B04E3 /* Data Model */,
 			);
 			path = "App Model";
 			sourceTree = "<group>";
@@ -161,6 +168,22 @@
 				1B12C4D422B3926500CA0284 /* DataModelTests.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		1B12C4DA22B7CBAE00CA0284 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B12C4DB22B7CBD300CA0284 /* ViewControllers.swift */,
+			);
+			path = "Test Classes";
+			sourceTree = "<group>";
+		};
+		1B12C4DD22B7D2B800CA0284 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 		D2A5F1F71F4A9143005CD714 = {
@@ -189,7 +212,6 @@
 				D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */,
 				0A311FFC219102ED00AE4720 /* App Layer */,
 				0A9EB50C21C072F50062B66E /* App Model */,
-				0A80ED3C21CB2A1D000B04E3 /* Data Model */,
 				0AA5E730219B997D00B7A0D0 /* UI Layer */,
 				0A2B1016219B0B8000848D29 /* Assets & Info */,
 				D2A5F20F1F4A9144005CD714 /* Info.plist */,
@@ -301,8 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B12C4DF22B7D2DC00CA0284 /* RootViewController+Tests.swift in Sources */,
 				1B12C4D522B3926500CA0284 /* DataModelTests.swift in Sources */,
 				0A21C7E021C6CF1200169D8B /* AppModelTests.swift in Sources */,
+				1B12C4DC22B7CBD300CA0284 /* ViewControllers.swift in Sources */,
 				0A21C7E221C70AE400169D8B /* StepCountControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
