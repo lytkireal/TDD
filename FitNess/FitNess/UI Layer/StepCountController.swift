@@ -140,7 +140,6 @@ extension StepCountController {
 extension StepCountController {
 
   private func updateChaseView() {
-    // update this function
     chaseView.state = AppModel.instance.appState
   }
 }

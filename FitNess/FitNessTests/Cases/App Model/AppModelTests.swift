@@ -42,8 +42,30 @@ class AppModelTests: XCTestCase {
     sut = nil
     super.tearDown()
   }
+  
+  // MARK: - Restart
 
+  func testAppModel_whenReset_isInNotStartedState() {
+    // given
+    givenInProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
+  }
+  
   // MARK: - Given
+  
+  func givenGoalSet() {
+    sut.dataModel.goal = 1000
+  }
+  
+  func givenInProgress() {
+    givenGoalSet()
+    try! sut.start()
+  }
 
   // MARK: - Lifecycle
 
@@ -68,17 +90,10 @@ class AppModelTests: XCTestCase {
   
   func testAppModel_whenStarted_isInInProgressState() {
     // given
-    givenGoalSet()
-    
-    // when started
-    try? sut.start()
+    givenInProgress()
 
     // then it is in inProgress
     let newState = sut.appState
     XCTAssertEqual(newState, AppState.inProgress)
-  }
-  
-  func givenGoalSet() {
-    sut.dataModel.goal = 1000
   }
 }

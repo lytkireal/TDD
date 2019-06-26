@@ -42,8 +42,9 @@ class StepCountControllerTests: XCTestCase {
   }
 
   override func tearDown() {
-    sut = nil
     AppModel.instance.dataModel.goal = nil
+    AppModel.instance.restart()
+    sut.updateUI()
     super.tearDown()
   }
 
@@ -64,6 +65,7 @@ class StepCountControllerTests: XCTestCase {
 
   func testController_whenCreated_buttonLabelIsStart() {
   
+    
     let text = sut.startButton.title(for: .normal)
     XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
   }
