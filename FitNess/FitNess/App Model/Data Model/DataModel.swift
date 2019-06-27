@@ -31,9 +31,15 @@ import Foundation
 // Add the Data Model class here:
 
 class DataModel {
+  // MARK: - Nessie
+  
+  let nessie = Nessie()
+  var distance: Double = 0
+  
   var goalReached: Bool {
     if let goal = goal,
-      steps >= goal {
+      steps >= goal,
+      caught == false {
       return true
     }
     return false
@@ -41,4 +47,8 @@ class DataModel {
   
   var goal: Int?
   var steps: Int = 0
+  
+  var caught: Bool {
+    return distance > 0 && nessie.distance >= distance
+  }
 }

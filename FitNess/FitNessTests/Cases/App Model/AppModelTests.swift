@@ -43,6 +43,32 @@ class AppModelTests: XCTestCase {
     super.tearDown()
   }
   
+  // MARK: - Pause
+  
+  func testAppModel_whenPause_isInPausedState() {
+    // given
+    givenInProgress()
+    
+    // when
+    sut.pause()
+    
+    // then
+    XCTAssertEqual(sut.appState, .paused)
+  }
+  
+  // MARK: - Continue
+  
+  func testAppModel_whenContinue_isInProgressState() {
+    // given
+    sut.pause()
+    
+    // when
+    sut.continueTraining()
+    
+    // then
+    XCTAssertEqual(sut.appState, .inProgress)
+  }
+  
   // MARK: - Restart
 
   func testAppModel_whenReset_isInNotStartedState() {

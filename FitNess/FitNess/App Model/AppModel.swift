@@ -45,5 +45,14 @@ class AppModel {
   
   func restart() {
     appState = .notStarted
+    dataModel.goal = nil
+  }
+  
+  func pause() {
+    appState = .paused
+  }
+  
+  func continueTraining() {
+    appState = .inProgress
   }
 }

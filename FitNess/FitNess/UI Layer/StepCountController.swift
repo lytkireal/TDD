@@ -122,6 +122,7 @@ extension StepCountController {
       textField.placeholder = "1000"
       textField.keyboardType = .numberPad
     }
+    
     let action = UIAlertAction(title: "Done", style: .default) { [weak self] action in
       guard let textField = alertController.textFields?.first else { return }
       if let numberString = textField.text,
