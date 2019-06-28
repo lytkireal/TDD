@@ -51,4 +51,12 @@ class DataModel {
   var caught: Bool {
     return distance > 0 && nessie.distance >= distance
   }
+  
+  func restart() {
+    goal = nil
+    distance = 0
+    steps = 0
+    nessie.distance = 0
+  }
+  
 }

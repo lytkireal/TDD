@@ -83,13 +83,31 @@ class StepCountController: UIViewController {
   // MARK: - UI Actions
   
   @IBAction func startStopPause(_ sender: Any?) {
+    
+    switch AppModel.instance.appState {
+    case .notStarted:
+      start()
+    case .inProgress:
+      pause()
+    case .paused:
+      start()
+    case .completed, .caught:
+      restart()
+    }
+    
+    updateUI()
+  }
+  
+  private func restart() {
+    AppModel.instance.restart()
+  }
+  
+  private func start() {
     do {
       try AppModel.instance.start()
     } catch {
       showNeedGoalAlert()
     }
-    
-    updateUI()
   }
   
   @IBAction func showSettings(_ sender: Any) {

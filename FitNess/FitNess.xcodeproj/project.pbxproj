@@ -21,6 +21,8 @@
 		1B12C4D522B3926500CA0284 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4D422B3926500CA0284 /* DataModelTests.swift */; };
 		1B12C4DC22B7CBD300CA0284 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4DB22B7CBD300CA0284 /* ViewControllers.swift */; };
 		1B12C4DF22B7D2DC00CA0284 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */; };
+		1BDE950E22C5E10200139A95 /* DataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE950D22C5E10200139A95 /* DataModel+Tests.swift */; };
+		1BDE951022C5E1E500139A95 /* AppModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE950F22C5E1E500139A95 /* AppModel+Tests.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		1B12C4D422B3926500CA0284 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
 		1B12C4DB22B7CBD300CA0284 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
+		1BDE950D22C5E10200139A95 /* DataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Tests.swift"; sourceTree = "<group>"; };
+		1BDE950F22C5E1E500139A95 /* AppModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Tests.swift"; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,9 +185,27 @@
 		1B12C4DD22B7D2B800CA0284 /* Test Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */,
+				1BDE950C22C5DA7D00139A95 /* Data model */,
+				1BDE950B22C5DA6F00139A95 /* App layer */,
 			);
 			path = "Test Extensions";
+			sourceTree = "<group>";
+		};
+		1BDE950B22C5DA6F00139A95 /* App layer */ = {
+			isa = PBXGroup;
+			children = (
+				1B12C4DE22B7D2DC00CA0284 /* RootViewController+Tests.swift */,
+			);
+			path = "App layer";
+			sourceTree = "<group>";
+		};
+		1BDE950C22C5DA7D00139A95 /* Data model */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE950D22C5E10200139A95 /* DataModel+Tests.swift */,
+				1BDE950F22C5E1E500139A95 /* AppModel+Tests.swift */,
+			);
+			path = "Data model";
 			sourceTree = "<group>";
 		};
 		D2A5F1F71F4A9143005CD714 = {
@@ -324,8 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B12C4DF22B7D2DC00CA0284 /* RootViewController+Tests.swift in Sources */,
+				1BDE950E22C5E10200139A95 /* DataModel+Tests.swift in Sources */,
 				1B12C4D522B3926500CA0284 /* DataModelTests.swift in Sources */,
 				0A21C7E021C6CF1200169D8B /* AppModelTests.swift in Sources */,
+				1BDE951022C5E1E500139A95 /* AppModel+Tests.swift in Sources */,
 				1B12C4DC22B7CBD300CA0284 /* ViewControllers.swift in Sources */,
 				0A21C7E221C70AE400169D8B /* StepCountControllerTests.swift in Sources */,
 			);

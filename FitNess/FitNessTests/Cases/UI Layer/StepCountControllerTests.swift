@@ -49,9 +49,26 @@ class StepCountControllerTests: XCTestCase {
 
   // MARK: - Given
   
+  func givenGoalSet() {
+    AppModel.instance.dataModel.goal = 1000
+  }
+  
   func givenInProgress() {
     givenGoalSet()
     sut.startStopPause(nil)
+  }
+  
+  func givenPaused() {
+    givenInProgress()
+    whenStartStopPauseCalled()
+  }
+  
+  func givenCompleted() {
+    AppModel.instance.setToComplete()
+  }
+  
+  func givenCaught() {
+    AppModel.instance.setToCaught()
   }
   
   // MARK: - When
@@ -63,17 +80,12 @@ class StepCountControllerTests: XCTestCase {
   // MARK: - Initial State
 
   func testController_whenCreated_buttonLabelIsStart() {
-  
-    
+
     let text = sut.startButton.title(for: .normal)
     XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
   }
 
   // MARK: - Goal
-
-  func givenGoalSet() {
-    AppModel.instance.dataModel.goal = 1000
-  }
   
   func testDataModel_whenGoalUpdate_updatesToNewGoal() {
     // given
@@ -97,18 +109,78 @@ class StepCountControllerTests: XCTestCase {
     XCTAssertEqual(state, AppState.inProgress)
   }
 
+  // MARK: - Pause
+  
   func testController_whenStartTapped_buttonLabelIsPause() {
     // given
     givenGoalSet()
     
     // when
     whenStartStopPauseCalled()
-
+    
     // then
     let text = sut.startButton.title(for: .normal)
     XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
+  
+  func testControllerInProgress_whenPauseTapped_appIsPaused() {
+    // given
+    givenInProgress()
+    
+    // when
+    whenStartStopPauseCalled()
+    
+    // then
+    XCTAssertEqual(AppModel.instance.appState, .paused)
+  }
+  
+  func testControllerInProgress_whenPauseTapped_buttonLabelIsResume() {
+    // given
+    givenInProgress()
+    
+    // when
+    whenStartStopPauseCalled()
+    
+    // then
+    let buttonLabelTitle = sut.startButton.title(for: .normal)
+    XCTAssertEqual(buttonLabelTitle, AppModel.instance.appState.nextStateButtonLabel)
+  }
+  
+  func testControllerInPaused_whenResumeTapped_appIsInProgress() {
+    // given
+    givenPaused()
 
+    // when
+    whenStartStopPauseCalled()
+
+    // then
+    XCTAssertEqual(AppModel.instance.appState, .inProgress)
+  }
+  
+  // MARK: - Terminal state
+  
+  func testControllerCompleted_whenRestartTapped_appIsNotStarted() {
+    // given
+    givenCompleted()
+    
+    // when
+    whenStartStopPauseCalled()
+    
+    // then
+    XCTAssertEqual(AppModel.instance.appState, .notStarted)
+  }
+  
+  func testControllerCaught_whenRestartTapped_appIsNotStarted() {
+    // given
+    givenCaught()
+    
+    // when
+    whenStartStopPauseCalled()
+    
+    // then
+    XCTAssertEqual(AppModel.instance.appState, .notStarted)
+  }
+  
   // MARK: - Chase View
   
   func testChaseView_whenLoaded_isNotStarted() {

@@ -23,6 +23,67 @@ class DataModelTests: XCTestCase {
     super.tearDown()
   }
   
+  // MARK: - Given
+  
+  func givenSomeProgress() {
+    sut.goal = 1000
+    sut.distance = 10
+    sut.steps = 100
+    sut.nessie.distance = 50
+  }
+  
+  // MARK: - Lifecycle
+  
+  func testModel_whenRestarted_goalIsUnset() {
+    // given
+    givenSomeProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertNil(sut.goal)
+  }
+  
+  func testModel_whenRestarted_distanceIsCleared() {
+    // given
+    givenSomeProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertEqual(sut.distance, 0)
+  }
+  
+  func testModel_whenRestarted_stepsAreCleared() {
+    // given
+    givenSomeProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertEqual(sut.steps, 0)
+  }
+  
+  func testModel_whenRestarted_nessieIsReset() {
+    // given
+    givenSomeProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertEqual(sut.nessie.distance, 0)
+  }
+  
+  // MARK: - Goal
+  
+  func testModel_whenStarted_goalIsNotReached() {
+    XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
+  }
+  
   func testModel_whenStepsReachGoal_goalIsReached() {
     // given
     sut.goal = 1000
@@ -32,12 +93,6 @@ class DataModelTests: XCTestCase {
     
     // then
     XCTAssertTrue(sut.goalReached)
-  }
-
-  // MARK: - Goal
-  
-  func testModel_whenStarted_goalIsNotReached() {
-    XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
   }
   
   func testGoal_whenUserCaught_cannotBeReached() {

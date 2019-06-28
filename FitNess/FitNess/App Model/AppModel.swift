@@ -36,6 +36,8 @@ class AppModel {
   
   let dataModel = DataModel()
 
+  // MARK: - App Lifecycle
+  
   func start() throws {
     guard dataModel.goal != nil else {
       throw AppError.goalNotSet
@@ -52,7 +54,20 @@ class AppModel {
     appState = .paused
   }
   
-  func continueTraining() {
-    appState = .inProgress
+  func setCompleted() throws {
+    guard dataModel.goalReached else {
+      throw AppError.invalidState
+    }
+    
+    appState = .completed
+  }
+  
+  func setCaught() throws {
+
+    guard dataModel.caught else {
+      throw AppError.invalidState
+    }
+    
+    appState = .caught
   }
 }

@@ -43,9 +43,61 @@ class AppModelTests: XCTestCase {
     super.tearDown()
   }
   
+  // MARK: - Given
+  
+  func givenGoalSet() {
+    sut.dataModel.goal = 1000
+  }
+  
+  func givenInProgress() {
+    givenGoalSet()
+    try! sut.start()
+  }
+  
+  func givenCompleteReady() {
+    sut.dataModel.setToComplete()
+  }
+  
+  func givenCaughtReady() {
+    sut.dataModel.setToCaught()
+  }
+  
+  // MARK: - Lifecycle
+  
+  func testAppModel_whenInitialized_isInNotStartedState() {
+    let initialState = sut.appState
+    XCTAssertEqual(initialState, AppState.notStarted)
+  }
+  
+  // MARK: - Start
+  
+  func testAppModel_whenStarted_isInInProgressState() {
+    // given
+    givenInProgress()
+    
+    // when
+    try? sut.start()
+    
+    // then it is in inProgress
+    let newState = sut.appState
+    XCTAssertEqual(newState, AppState.inProgress)
+  }
+  
+  func testModelWithNoGoal_whenStarted_throwsError() {
+    XCTAssertThrowsError(try sut.start())
+  }
+  
+  func testStart_withGoalSet_doesNotThrow() {
+    // given
+    givenGoalSet()
+    
+    // then
+    XCTAssertNoThrow(try sut.start())
+  }
+  
   // MARK: - Pause
   
-  func testAppModel_whenPause_isInPausedState() {
+  func testAppModel_whenPaused_isInPausedState() {
     // given
     givenInProgress()
     
@@ -56,17 +108,52 @@ class AppModelTests: XCTestCase {
     XCTAssertEqual(sut.appState, .paused)
   }
   
-  // MARK: - Continue
+  // MARK: - Terminal states
   
-  func testAppModel_whenContinue_isInProgressState() {
+  func testModel_whenCompleted_isInCompletedState() {
     // given
-    sut.pause()
+    givenCompleteReady()
     
     // when
-    sut.continueTraining()
+    try? sut.setCompleted()
     
     // then
-    XCTAssertEqual(sut.appState, .inProgress)
+    XCTAssertEqual(sut.appState, AppState.completed)
+  }
+  
+  func testModelNotCompleteReady_whenCompleted_throwsError() {
+      XCTAssertThrowsError(try sut.setCompleted())
+  }
+  
+  func testModelCompleteReady_whenCompleted_doesNotThrowError() {
+    // given
+    givenCompleteReady()
+    
+    // then
+    XCTAssertNoThrow(try sut.setCompleted())
+  }
+  
+  func testModel_whenCaught_isInCaughtState() {
+    // given
+    givenCaughtReady()
+    
+    // when started
+    try? sut.setCaught()
+    
+    // then
+    XCTAssertEqual(sut.appState, .caught)
+  }
+  
+  func testModelNotCaughtReady_whenCaught_throwsError() {
+    XCTAssertThrowsError(try sut.setCaught())
+  }
+  
+  func testModelCaughtReady_whenCaught_doesNotThrowError() {
+    // given
+    givenCaughtReady()
+    
+    // then
+    XCTAssertNoThrow(try sut.setCaught())
   }
   
   // MARK: - Restart
@@ -82,44 +169,14 @@ class AppModelTests: XCTestCase {
     XCTAssertEqual(sut.appState, .notStarted)
   }
   
-  // MARK: - Given
-  
-  func givenGoalSet() {
-    sut.dataModel.goal = 1000
-  }
-  
-  func givenInProgress() {
-    givenGoalSet()
-    try! sut.start()
-  }
-
-  // MARK: - Lifecycle
-
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
-  }
-
-  // MARK: - Start
-
-  func testAppModelWithNoGoal_whenStarted_throwsError() {
-    XCTAssertThrowsError(try sut.start())
-  }
-  
-  func testAppModel_withGoalSet_doesNotThrow() {
+  func testAppModel_whenRestarted_restartsDataModel() {
     // given
     givenGoalSet()
     
+    // when
+    sut.restart()
+    
     // then
-    XCTAssertNoThrow(try sut.start())
-  }
-  
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenInProgress()
-
-    // then it is in inProgress
-    let newState = sut.appState
-    XCTAssertEqual(newState, AppState.inProgress)
+    XCTAssertNil(sut.dataModel.goal)
   }
 }
