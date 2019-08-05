@@ -32,10 +32,16 @@ class AppModel {
 
   static let instance = AppModel()
 
-  private(set) var appState: AppState = .notStarted
+  private(set) var appState: AppState = .notStarted {
+    didSet {
+      stateChangedCallback?(self)
+    }
+  }
   
   let dataModel = DataModel()
 
+  var stateChangedCallback: ((AppModel) -> Void)?
+  
   // MARK: - App Lifecycle
   
   func start() throws {
